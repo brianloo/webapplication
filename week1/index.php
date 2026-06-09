@@ -11,7 +11,32 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-echo "Connected successfully";
+// Entering email and password
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Search database
+    $sql = "SELECT * FROM student WHERE email = ? AND password = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $email, $password);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        echo "User Found";
+    } else {
+        echo "User Not Found";
+    }
+
+    $stmt->close();
+}
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
