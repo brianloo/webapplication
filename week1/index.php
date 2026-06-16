@@ -47,7 +47,7 @@ $conn->close();
             height: 100vh;
         }
         
-        </style>
+    </style>
 </head>
 <body>
     <div id="email">
