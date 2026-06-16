@@ -12,30 +12,20 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 // Entering email and password
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['email']) && isset($_POST['password'])) {
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $query = "SELECT* FROM student WHERE email ='" . $_POST['email'] . "' AND password = '" . $_POST['password'] . "'";
+    $result = mysqli_query($conn, $query) or die("Couldn't execute query");
 
-    // Search database
-    $sql = "SELECT * FROM student WHERE email = ? AND password = ?";
+    $num_rows = mysqli_num_rows($result);
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $email, $password);
-
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
+    if ($num_rows > 0) {
         echo "User Found";
+        header("Location:booklist.php");
     } else {
         echo "User Not Found";
     }
-
-    $stmt->close();
 }
-
 $conn->close();
 ?>
 
