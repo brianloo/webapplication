@@ -5,12 +5,15 @@ $password = "mDN@b_NanvTrDyW1";
 $dbname = "brianloo";
 
 // Create connection
-$conn = new mysqli('localhost', 'root', '', 'brianloo');
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+
+session_start();
+
 // Entering email and password
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
@@ -20,10 +23,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $num_rows = mysqli_num_rows($result);
 
     if ($num_rows > 0) {
-        echo "User Found";
+        $_SESSION['email'] = $_POST['email'];
         header("Location:booklist.php");
     } else {
-        echo "User Not Found";
+        echo "Account Not Found";
     }
 }
 $conn->close();

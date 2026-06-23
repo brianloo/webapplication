@@ -61,8 +61,8 @@ if (!$conn) {
         }
         mysqli_close($conn);
         ?>
-        <a href="http://localhost/class/week1/student.php"><input type="submit" value="Profile"></a>
-        <a href=""><input type="submit" value="AddBook"></a>
+        <a href="http://localhost/class/week1/profile.php"><input type="submit" value="Profile"></a>
+        <a href="http://localhost/class/week1/addBook.php"><input type="submit" value="AddBook"></a>
         <a href="http://localhost/class/week1/"><input type="submit" value="LogOut"></a>
     </table>
 </body>

@@ -4,13 +4,14 @@ $username = "brianloo";
 $password = "mDN@b_NanvTrDyW1";
 $dbname = "brianloo";
 
+session_start();
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
-
+$session_email = $_SESSION['email'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +37,8 @@ if (!$conn) {
             <th>Year Joined</th>
         </tr>
         <?php
-        $query = "SELECT * FROM student";
+        
+        $query = "SELECT * FROM student WHERE email ='$session_email'";
 
         $result = mysqli_query($conn, $query);
 
@@ -46,7 +48,7 @@ if (!$conn) {
                 <td><?php echo $row['name']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['yearjoin']; ?></td>
-                <td><input type="button" value="Edit"></td>
+                <td><a href="http://localhost/class/week1/editProfile.php"><input type="button" value="Edit"></a></td>
             </tr>
             
         <?php
@@ -54,6 +56,7 @@ if (!$conn) {
         mysqli_close($conn);
         ?>
         <a href="http://localhost/class/week1/booklist.php"><input type="submit" value="Back"></a>
+        <a href="http://localhost/class/week1/addProfile.php"><input type="submit" value="Add Profile"></a>
     </table>
 </body>
 </html>
