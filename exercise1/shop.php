@@ -17,14 +17,15 @@ if ($conn->connect_error) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
     <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
     <div class="sidebar">
             <a href="">Main Page</a>
-            <a href="">Customers</a>
+            <a href="http://localhost/class/exercise1/shop.php">Customers</a>
             <a href="">Products</a>
             <a href="">Orders</a>
-            <a href="http://localhost/class/week1/">Log Out</a>
+            <a href="http://localhost/class/exercise1/customer.php">Log Out</a>
     </div>
     <div class="content">
         <table width="1100">
@@ -60,6 +61,7 @@ if ($conn->connect_error) {
             }
             mysqli_close($conn);
             ?>
+            <a href="http://localhost/class/exercise1/addCustomer.php"><input type="submit" value="Add Customer"></a>
         </table>
     </div>
 </body>
