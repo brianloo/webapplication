@@ -1,25 +1,51 @@
 <?php
-$servername = "localhost";
-$username = "brianloo";
-$password = "mDN@b_NanvTrDyW1";
-$dbname = "brianloo";
-
 session_start();
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
 
-// SQL to update a record
-$sql = "UPDATE student SET name='hey' WHERE email= '".$_SESSION["email"]."'";
+$conn = mysqli_connect("localhost", "brianloo", "mDN@b_NanvTrDyW1", "brianloo");
 
-if (mysqli_query($conn, $sql)) {
-  echo "Edit Saved Successfully";
-} else {
-  echo "Error updating record: " . mysqli_error($conn);
-}
+$email = $_SESSION["email"];
 
-mysqli_close($conn);
+// Get current user data
+$sql = "SELECT * FROM student WHERE email='$email'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Edit Profile</title>
+  </head>
+
+  <style>
+      table {
+          border-collapse: collapse;
+      }
+
+      table, th, td {
+          border: 1px solid black;
+      }
+  </style>
+
+  <body>
+    <table width="800">
+      <tr>
+            <th>Name</th>
+            <th>Password</th>
+            <th>ConfirmPassword</th>
+            <th>Year Joined</th>
+      </tr>
+
+      <form action="updateProfile.php" method="POST">
+          <td><input type="text" name="name" value="<?php echo $row['name']; ?>"></td>
+          <td><input type="password" name="password" value="<?php echo $row['password']; ?>"></td>
+          <td><input type="password" name="confirmpassword" value="<?php echo $row['password']; ?>"></td>
+          <td><input type="text" name="yearjoin" value="<?php echo $row['yearjoin']; ?>"></td>
+          <td><input type="submit" value="Save Changes"></td>
+      </form>
+      <a href="http://localhost/class/week1/profile.php"><input type="submit" value="Back"></a>
+    </table>
+  </body>
+</html>
