@@ -23,7 +23,7 @@ if ($conn->connect_error) {
     <div class="sidebar">
             <a href="">Main Page</a>
             <a href="http://localhost/class/exercise1/shop.php">Customers</a>
-            <a href="">Products</a>
+            <a href="http://localhost/class/exercise1/product.php">Products</a>
             <a href="">Orders</a>
             <a href="http://localhost/class/exercise1/customer.php">Log Out</a>
     </div>

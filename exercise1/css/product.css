@@ -1,0 +1,21 @@
+body {
+    background-color: #949faa;
+    margin: 100px;
+    margin-top: 150px;
+    margin-left: 250px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+.content {
+    margin-left: 240px;
+    padding: 20px;
+}
