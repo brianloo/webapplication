@@ -52,7 +52,11 @@ if ($conn->connect_error) {
                     <td><?php echo $row['Email']; ?></td>
                     <td><?php echo $row['PhoneNumber']; ?></td>
                     <div class="edit">
-                        <td><input type="button" value="Edit"></td>
+                       <td>
+                            <a href="http://localhost/class/exercise1/editProduct.php?CustomerID=<?php echo $row['CustomerID']; ?>">
+                        <input type="button" value="Edit">
+                            </a>
+                        </td>
                     </div>
                     <td><button>Delete</button></td>
                 </tr>
