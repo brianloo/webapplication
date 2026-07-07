@@ -10,7 +10,14 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 $oldemail = $_SESSION["email"];
 $name = $_POST["name"];
 $password = $_POST["password"];
+$confirmPassword = $_POST["confirmpassword"];
 $yearjoin = $_POST["yearjoin"];
+$currentYear = date("Y");
+
+if ($password != $confirmPassword) {
+    header("Location: editProfile.php?error=password");
+    exit();
+}
 
 // Update user info
 $sql = "UPDATE student 
