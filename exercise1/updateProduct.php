@@ -6,36 +6,31 @@ $dbname = "exercise1";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-$CustomerID = $_POST["CustomerID"];
-$CustomerName = $_POST["CustomerName"];
-$email = $_POST["email"];
-$userPassword = $_POST["password"];
-$confirmPassword = $_POST["confirm_password"];
-$phone_number = $_POST["phone_number"];
 
-if (strlen($userPassword) < 6) {
-    header("Location: editProduct.php?CustomerID=$CustomerID&error=shortpassword");
+$PID = $_POST["ProductID"];
+$ProductName = $_POST["ProductName"];
+$Description = $_POST["Description"];
+$Price = $_POST["Price"];
+
+if (!preg_match('/^\d+(\.\d{1,2})?$/', $Price)) {
+    header("Location: editProduct.php?ProductID=$PID&error=price");
     exit();
 }
 
-if ($userPassword != $confirmPassword) {
-    header("Location: editProduct.php?CustomerID=$CustomerID&error=password");
-    exit();
-}
+$sql = "UPDATE products
+        SET ProductName='$ProductName',
+            Description='$Description',
+            Price='$Price'
+        WHERE ProductID='$PID'";
 
-$sql = "UPDATE customers
-        SET CustomerName='$CustomerName',
-            Email='$email',
-            Password='$userPassword',
-            PhoneNumber='$phone_number'
-        WHERE CustomerID='$CustomerID'";
 
 if (mysqli_query($conn, $sql)) {
-    header("Location: http://localhost/class/exercise1/shop.php");
+    header("Location: http://localhost/class/exercise1/product.php");
     exit();
 } else {
     echo "Error" . mysqli_error($conn);
 }
+
 
 mysqli_close($conn);
 ?>

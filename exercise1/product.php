@@ -47,7 +47,13 @@ if ($conn->connect_error) {
                 <td><?php echo $row['ProductName']; ?></td>
                 <td><?php echo $row['Description']; ?></td>
                 <td><?php echo $row['Price']; ?></td>
-                <td><input type="button" value="Edit"></td>
+                <div class="edit">
+                       <td>
+                            <a href="http://localhost/class/exercise1/editProduct.php?ProductID=<?php echo $row['ProductID']; ?>">
+                        <input type="button" value="Edit">
+                            </a>
+                        </td>
+                    </div>
                 <td><button>Delete</button></td>
             </tr>
             

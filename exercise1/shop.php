@@ -53,7 +53,7 @@ if ($conn->connect_error) {
                     <td><?php echo $row['PhoneNumber']; ?></td>
                     <div class="edit">
                        <td>
-                            <a href="http://localhost/class/exercise1/editProduct.php?CustomerID=<?php echo $row['CustomerID']; ?>">
+                            <a href="http://localhost/class/exercise1/editCustomer.php?CustomerID=<?php echo $row['CustomerID']; ?>">
                         <input type="button" value="Edit">
                             </a>
                         </td>
