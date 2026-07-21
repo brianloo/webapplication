@@ -63,7 +63,12 @@ if (!isset($_SESSION['email'])) {
                         <input type="button" value="Edit">
                     </a>
                 </td>
-                <td><button>Delete</button></td>
+                <td>
+                    <form action="DeleteBook.php" method="post" onsubmit="return confirm('Are you sure you want to delete <?php echo $row['ISBN']; ?>?');">
+                        <input type="hidden" name="ISBN" value="<?php echo $row['ISBN']; ?>">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
             
         <?php
@@ -72,7 +77,7 @@ if (!isset($_SESSION['email'])) {
         ?>
         <a href="http://localhost/class/week1/profile.php"><input type="submit" value="Profile"></a>
         <a href="http://localhost/class/week1/addBook.php"><input type="submit" value="AddBook"></a>
-        <a href="http://localhost/class/week1/"><input type="submit" value="LogOut"></a>
+        <a href="http://localhost/class/week1/logOut.php"><input type="submit" value="LogOut"></a>
     </table>
 </body>
 </html>
