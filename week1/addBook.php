@@ -1,3 +1,9 @@
+<?php
+if (isset($_GET['error'])) {
+    echo $_GET['error'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,12 +32,24 @@
         </tr>
         <tr>
             <form action="insertBook.php" method="POST">
-                <td><input type="text" name="ISBN"></td>
-                <td><input type="text" name="title"></td>
-                <td><input type="text" name="author"></td>
-                <td><textarea cols='50' input type="text" name="description"></textarea></td>
-                <td><input type="text" name="price"></td>
-                <td><input type="submit" value="Add Book"></td>
+                <td>
+                    <input type="text" name="ISBN">
+                </td>
+                <td>
+                    <input type="text" name="title">
+                </td>
+                <td>
+                    <input type="text" name="author">
+                </td>
+                <td>
+                    <textarea cols='50' name="description"></textarea>
+                </td>
+                <td>
+                    <input type="text" name="price" step="0.01">
+                </td>
+                <td>
+                    <input type="submit" value="Add Book">
+                </td>
             </form>
         </tr>
     

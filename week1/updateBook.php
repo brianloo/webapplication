@@ -13,6 +13,11 @@ $author = $_POST["author"];
 $description = $_POST["description"];
 $price = $_POST["price"];
 
+if (!preg_match('/^\d+(\.\d{1,2})?$/', $price)) {
+    header("Location: editBook.php?ISBN=$ISBN&error=price");
+    exit();
+}
+
 $sql = "UPDATE booklist
         SET title='$title',
             author='$author',

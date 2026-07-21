@@ -16,6 +16,19 @@ $author = $_POST['author'];
 $description = $_POST['description'];
 $price = $_POST['price'];
 
+if (empty($ISBN) || empty($title) || empty($author) || empty($description) || empty($price)) {
+    header("Location: addBook.php?error=Please fill out all fields");
+    exit();
+}
+else if (!preg_match('/^\d+(\.\d{1,2})?$/', $ISBN) || strlen($ISBN) != 13) {
+    header("Location: addBook.php?error=Please fill out the ISBN field with a valid 13-digit number");
+    exit();
+}
+else if (!preg_match('/^\d+(\.\d{1,2})?$/', $price)) {
+    header("Location: addBook.php?error=Please fill out the price field with a valid number");
+    exit();
+}
+
 $sql = "INSERT INTO booklist (ISBN, title, author, description, price) 
 VALUES ('$ISBN', '$title', '$author', '$description', $price)";
 

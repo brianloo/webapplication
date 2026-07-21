@@ -10,6 +10,10 @@ $ISBN = $_GET['ISBN'];
 $query = "SELECT * FROM booklist WHERE ISBN='$ISBN'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
+
+if (isset($_GET['error']) && $_GET['error'] == 'price') {
+    echo "Price must be a valid Number";
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,10 +46,19 @@ $row = mysqli_fetch_assoc($result);
 
       <form action="updateBook.php" method="POST">
           <td><?php echo $row['ISBN']; ?></td>
-          <td><input type="text" name="title" value="<?php echo $row['title']; ?>"></td>
-          <td><input type="text" name="author" value="<?php echo $row['author']; ?>"></td>
-          <td><input type="text" name="description" value="<?php echo $row['description']; ?>"></td>
-          <td><input type="text" name="price" value="<?php echo $row['price']; ?>"></td>
+          <input type="hidden" name="ISBN" value="<?php echo $row['ISBN']; ?>">
+          <td>
+            <input type="text" name="title" value="<?php echo $row['title']; ?>" required>
+          </td>
+          <td>
+            <input type="text" name="author" value="<?php echo $row['author']; ?>" required>
+          </td>
+          <td>
+            <input type="text" name="description" value="<?php echo $row['description']; ?>" required>
+          </td>
+          <td>
+            <input type="text" name="price" value="<?php echo $row['price']; ?>" step="0.01" required>
+          </td>
           <td><input type="submit" value="Save Changes"></td>
       </form>
       <a href="http://localhost/class/week1/booklist.php"><input type="submit" value="Back"></a>
